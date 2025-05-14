@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石秋悦 | 算法工程师</title>
+    <!-- 引入字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            /* 颜色变量 */
+            --primary-color: rgb(41,245,255);    /* 主色调 */
+            --secondary-color: rgb(197,252,255); /* 辅助色 */
+            --text-dark: #2d2d2d;               /* 深文本色 */
+            --text-light: #5f5f5f;               /* 浅文本色 */
+            
+            /* 字体变量 */
+            --title-font: 'Noto Sans SC', sans-serif;  /* 标题字体 */
+            --body-font: 'Roboto', 'Noto Sans SC', sans-serif;  /* 正文字体 */
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.98);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--title-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 移动设备导航 */
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 首屏 */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--secondary-color) 20%, rgba(255,255,255,0) 80%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-family: var(--title-font);
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .hero-intro {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            animation: fadeInUp 0.8s ease-out 0.4s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        /* 通用部分样式 */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--title-font);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        /* 关于我 */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* 专业经历 */
+        .experience-item {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-time {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-desc {
+            color: var(--text-light);
+        }
+
+        /* 技能 */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-name {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* 项目展示 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 教育背景 */
+        .education-item {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .education-time {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* 联系方式 */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            padding: 2rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: var(--primary-color);
+            padding: 2rem 5%;
+            text-align: center;
+            color: #fff;
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 5%;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">石秋悦</div>
+            <div class="nav-links" id="navLinks">
+                <a href="#hero">首页</a>
+                <a href="#about">关于我</a>
+                <a href="#experience">专业经历</a>
+                <a href="#skills">技能</a>
+                <a href="#projects">项目</a>
+                <a href="#education">教育</a>
+                <a href="#contact">联系</a>
+            </div>
+            <div class="menu-icon" id="menuIcon">☰</div>
+        </div>
+    </nav>
+
+    <!-- 首屏 -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">石秋悦</h1>
+            <h2 class="hero-subtitle">算法工程师</h2>
+            <p class="hero-intro">专注于算法研发与游戏开发的技术实践者，擅长将理论知识转化为实际应用，具备扎实的数学基础和工程实现能力</p>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="section" id="about">
+        <div class="section-container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <p class="about-text">上海建桥学院数字媒体技术专业本科毕业，具备扎实的算法理论基础和丰富的Unity3D开发经验。熟悉机器学习/深度学习基本框架，擅长将算法技术与实际应用场景结合。在游戏开发领域有多个完整项目经验，涵盖2D/3D游戏开发、AR场景交互等方向。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专业经历 -->
+    <section class="section" id="experience">
+        <div class="section-container">
+            <h2 class="section-title">专业经历</h2>
+            
+            <div class="experience-item">
+                <p class="experience-time">2022.12</p>
+                <h3 class="experience-title">三维引擎技术基础 | Unity3D开发</h3>
+                <p class="experience-desc">使用Unity3D制作2D游戏（包含迷宫、平台跳跃、类黄金矿工、接东西四个关卡）<br>
+                负责：UI界面开发、平台跳跃关卡实现、全关卡整合发布<br>
+                技术栈：C#、相机跟随、触发检测、UGUI</p>
+            </div>
+
+            <div class="experience-item">
+                <p class="experience-time">2023.12</p>
+                <h3 class="experience-title">虚拟现实应用开发 | Unity3D、AR开发</h3>
+                <p class="experience-desc">基于Vuforia的AR场景交互项目（扫描照片展示八大行星介绍）<br>
+                负责：交互场景开发（模型缩放/旋转）、视频播放功能实现、项目测试与导出<br>
+                技术栈：Vuforia、C#、动画制作、UGUI</p>
+            </div>
+
+            <div class="experience-item">
+                <p class="experience-time">2023.10-2024.03</p>
+                <h3 class="experience-title">3D解谜游戏 | Unity3D开发</h3>
+                <p class="experience-desc">第一人称3D解谜游戏开发（密室线索推理通关）<br>
+                负责：场景设计与线索放置、2D素材制作、功能开发（摄像机跟随/背包系统/物品拾取）、物品动画制作、项目测试导出<br>
+                技术栈：Unity3D、C#、动画制作、UGUI、背包系统</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能 -->
+    <section class="section" id="skills">
+        <div class="section-container">
+            <h2 class="section-title">专业技能</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3 class="skill-name">算法技术</h3>
+                    <p>熟悉机器学习/深度学习基础算法，掌握Python数据处理（Pandas/Numpy）、模型训练（TensorFlow/PyTorch）</p>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">游戏开发</h3>
+                    <p>精通Unity3D引擎开发，熟悉C#语言，掌握UGUI系统、动画系统、物理系统等核心模块</p>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">AR开发</h3>
+                    <p>具备Vuforia开发经验，熟悉AR场景搭建、图像识别、模型交互等核心技术</p>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">工具与协作</h3>
+                    <p>熟练使用Git代码管理，掌握Jira项目管理，熟悉Photoshop基础设计</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目展示 -->
+    <section class="section" id="projects">
+        <div class="section-container">
+            <h2 class="section-title">项目展示</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">2D多关卡游戏开发</h3>
+                        <p class="project-tech">技术栈：Unity3D、C#、UGUI</p>
+                        <p class="experience-desc">包含迷宫、平台跳跃等四个独立关卡，实现了UI交互、关卡切换、时间限制等核心功能</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">AR行星科普系统</h3>
+                        <p class="project-tech">技术栈：Vuforia、Unity3D、C#</p>
+                        <p class="experience-desc">通过图像识别触发AR场景，支持模型交互（缩放/旋转）和视频播放功能</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">3D解谜游戏开发</h3>
+                        <p class="project-tech">技术栈：Unity3D、C#、动画系统</p>
+                        <p class="experience-desc">实现第一人称视角控制、背包系统、物品交互等核心功能，包含完整的解谜逻辑</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育背景 -->
+    <section class="section" id="education">
+        <div class="section-container">
+            <h2 class="section-title">教育背景</h2>
+            <div class="education-item">
+                <p class="education-time">2020.06-2024.06</p>
+                <h3>上海建桥学院 | 数字媒体技术（本科）</h3>
+                <p>相关课程：机器学习、深度学习、计算机图形学、游戏开发基础</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section class="section" id="contact">
+        <div class="section-container">
+            <h2 class="section-title">联系方式</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <p>155-1234-5678</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <p>sqy@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>© 2025 石秋悦 | 算法工程师简历</p>
+    </footer>
+
+    <script>
+        // 移动导航菜单切换
+        const menuIcon = document.getElementById('menuIcon');
+        const navLinks = document.getElementById('navLinks');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 滚动时关闭移动菜单
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // 导航链接平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+    
