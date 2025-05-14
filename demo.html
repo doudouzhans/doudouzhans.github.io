@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width initial,-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>石秋悦 - 算法工程师</title>
     <style>
         /* 全局样式 */
@@ -26,10 +26,11 @@
             line-height: 1.6;
             color: var(--dark-color);
             overflow-x: hidden;
+            text-align: center; /* 添加文本居中 */
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Segoe UI', 'Microsoft YaHei sans',-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
             margin-bottom: 20px;
         }
 
@@ -43,17 +44,17 @@
             color: var(--secondary-color);
         }
 
-        . {
-container            width: 90%;
+        .container {
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
 
         .section-title {
-            text-align: center;
             margin-bottom: 60px;
-            position relative:;
+            position: relative;
+            display: inline-block;
         }
 
         .section-title::after {
@@ -64,7 +65,7 @@ container            width: 90%;
             background: var(--primary-color);
             bottom: -15px;
             left: 50%;
-            transform translate:X(-50%);
+            transform: translateX(-50%);
         }
 
         .btn {
@@ -91,8 +92,8 @@ container            width: 90%;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100           %;
- z-index: 1000;
+            width: 100%;
+            z-index: 1000;
             padding: 20px 0;
             transition: all 0.3s ease;
         }
@@ -112,16 +113,20 @@ container            width: 90%;
         .logo {
             font-size: 24px;
             font-weight: 700;
-            color var:(--primary-color);
+            color: var(--primary-color);
+            text-align: left;
+            width: 100%;
+            margin-bottom: 10px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
+            justify-content: center;
         }
 
         .nav-links li {
-            margin-left: 30px;
+            margin: 0 15px;
         }
 
         .nav-links a {
@@ -137,7 +142,7 @@ container            width: 90%;
             height: 2px;
             background: var(--primary-color);
             bottom: -5px;
-            left:0 ;
+            left: 0;
             transition: width 0.3s ease;
         }
 
@@ -151,7 +156,7 @@ container            width: 90%;
         }
 
         .hamburger div {
-            width:2 5px;
+            width: 25px;
             height: 3px;
             background: var(--dark-color);
             margin: 5px;
@@ -194,7 +199,7 @@ container            width: 90%;
 
         .hero-subtitle {
             font-size: 1.8rem;
-            margin-bottom:3 0px;
+            margin-bottom: 30px;
             color: var(--primary-color);
         }
 
@@ -221,17 +226,22 @@ container            width: 90%;
         .about-content {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 40px;
         }
 
         .about-text {
             flex: 1;
             min-width: 300px;
+            max-width: 500px;
+            text-align: left;
+            margin: 0 auto;
         }
 
         .about-image {
             flex: 1;
             min-width: 300px;
+            max-width: 300px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
@@ -260,6 +270,7 @@ container            width: 90%;
         .about-details-item .title {
             width: 120px;
             font-weight: 600;
+            text-align: left;
         }
 
         /* 专业经历 */
@@ -270,7 +281,7 @@ container            width: 90%;
 
         .experience-timeline {
             position: relative;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -288,8 +299,12 @@ container            width: 90%;
         .experience-item {
             padding: 20px 40px;
             position: relative;
-            width:50%;
+            width: 50%;
             box-sizing: border-box;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .experience-item:nth-child(odd) {
@@ -306,7 +321,7 @@ container            width: 90%;
             width: 20px;
             height: 20px;
             background: var(--primary-color);
-            border-radius:50%;
+            border-radius: 50%;
             top: 20px;
             z-index: 1;
         }
@@ -338,6 +353,7 @@ container            width: 90%;
 
         .experience-description {
             line-height: 1.8;
+            text-align: left;
         }
 
         /* 技能 */
@@ -349,12 +365,14 @@ container            width: 90%;
         .skills-content {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 30px;
         }
 
         .skills-category {
             flex: 1;
             min-width: 300px;
+            max-width: 300px;
         }
 
         .skills-title {
@@ -404,6 +422,7 @@ container            width: 90%;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
+            justify-items: center;
         }
 
         .project-item {
@@ -412,6 +431,7 @@ container            width: 90%;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 350px;
         }
 
         .project-item:hover {
@@ -453,11 +473,12 @@ container            width: 90%;
 
         .project-description {
             margin-bottom: 20px;
+            text-align: left;
         }
 
         .project-link {
             display: inline-block;
-            color var(--primary-color);
+            color: var(--primary-color);
             font-weight: 500;
         }
 
@@ -471,6 +492,9 @@ container            width: 90%;
             margin-bottom: 40px;
             padding-bottom: 30px;
             border-bottom: 1px solid #e9ecef;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .education-item:last-child {
@@ -498,6 +522,7 @@ container            width: 90%;
 
         .education-description {
             line-height: 1.8;
+            text-align: left;
         }
 
         /* 联系方式 */
@@ -509,12 +534,14 @@ container            width: 90%;
         .contact-content {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 40px;
         }
 
         .contact-info {
             flex: 1;
             min-width: 300px;
+            max-width: 300px;
         }
 
         .contact-item {
@@ -542,6 +569,7 @@ container            width: 90%;
         .contact-form {
             flex: 1;
             min-width: 300px;
+            max-width: 500px;
         }
 
         .form-group {
@@ -631,31 +659,21 @@ container            width: 90%;
                 font-size: 1.3rem;
             }
 
-            .experience-timeline::after {
-                left: 31px;
-            }
-
-            .experience-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .experience-item:nth-child(even) {
-                left:0;
-            }
-
-            .experience-item::after {
-                left: 21px;
-            }
-
-            .experience-item:nth-child(odd)::after {
-                right: auto;
-                left:21px;
-            }
-
             .nav-links {
-                position fixed;top:9vh;right:0; background:white; width:60%; height:calc(100vh - 9vh); display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:50px; transform:translateX(100%); transition:transform 0.5s ease-in; z-index:999;
+                position: fixed;
+                top: 9vh;
+                right: 0;
+                background: white;
+                width: 60%;
+                height: calc(100vh - 9vh);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                z-index: 999;
             }
 
             .nav-links.active {
